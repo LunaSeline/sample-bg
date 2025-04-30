@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Emotion UI</title>
   <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
   <div class="theme-toggle">
@@ -15,6 +16,14 @@
     <div class="header-bar">
       <div class="project-name">🌟 Project name</div>
       <div class="welcome-msg">Welcome!</div>
+    </div>
+
+    <!-- Palette Selection for Light/Dark Mode -->
+    <div class="palette-selection">
+      <button id="calmPalette" class="palette-btn">Calm Palette</button>
+      <button id="brightPalette" class="palette-btn">Bright Palette</button>
+      <button id="serenePalette" class="palette-btn">Serene Palette</button>
+      <button id="sunsetPalette" class="palette-btn">Sunset Palette</button>
     </div>
 
     <div class="card section-card">
@@ -28,10 +37,14 @@
     </div>
 
     <div class="card emotion-card">
-      <div class="emotion-icon">😔</div>
+      <!-- Moved the graph to the left side -->
+      <div class="emotion-graph">
+        <canvas id="emotionGraph"></canvas>
+      </div>
+
       <div class="emotion-text">
-        <h3>Detected Emotion: <span class="emotion-state">Sad</span></h3>
-        <p>We're here to help.</p>
+        <h3>Detected Emotion: <span class="emotion-state" id="emotionState">Not Detected</span></h3>
+        <p id="emotionDetectedText">We're here to help.</p>
       </div>
     </div>
 
