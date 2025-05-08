@@ -1,241 +1,255 @@
-/* ================================
-   Base Theme Variables
-================================ */
-:root {
-    --font-family: 'Segoe UI', sans-serif;
-
-    /* Light Theme Colors */
-    --light-bg: linear-gradient(145deg, #fceefc, #e0f7fa, #fefbd8); /* Soft pastel mix */
-    --light-card-bg: #ffffff;
-    --light-text: #222;
-    --light-shadow: rgba(0, 0, 0, 0.08);
-    --light-highlight: #6a5acd; /* Slate blue for contrast */
-    --light-emotion-bg: #e8f5e9; /* pastel green hint */
-    --light-btn: linear-gradient(90deg, #ffb199, #ffecd2); /* pastel coral to cream */
-
-    /* Dark Theme Colors */
-    --dark-bg: linear-gradient(135deg, #1a1a2e, #342f62);
-    --dark-card-bg: #2a2550;
-    --dark-text: #f0f0f0;
-    --dark-shadow: rgba(0, 0, 0, 0.3);
-    --dark-highlight: #5d48cc;
-    --dark-emotion-bg: #17487e;
-    --dark-btn: linear-gradient(90deg, #ff4a80, #b44bff);
-
-    /* Custom Palettes */
-    --calm-palette-bg: linear-gradient(145deg, #a1c4fd, #c2e9fb);
-    --bright-palette-bg: linear-gradient(145deg, #ff7e5f, #feb47b);
-    --serene-palette-bg: linear-gradient(145deg, #fcb69f, #e6c8f0);
-    --sunset-palette-bg: linear-gradient(145deg, #f77f00, #d62828);
-}
-
-/* ================================
-   Theme Application
-================================ */
 body {
+    font-family: Arial, sans-serif;
     margin: 0;
-    font-family: var(--font-family);
-    background: var(--light-bg);
-    background-attachment: fixed;
-    background-size: cover;
-    color: var(--light-text);
-    transition: background 0.5s ease, color 0.5s ease;
-    min-height: 100vh;
+    background: #f4f4f4;
+    color: #333;
+    transition: all 0.3s ease;
+  }
+  
+  body.dark-mode {
+    background: #121212;
+    color: #f4f4f4;
+  }
+  
+  .app-container {
     padding: 20px;
-}
-
-body.dark-mode {
-    background: var(--dark-bg);
-    color: var(--dark-text);
-}
-
-body.calm-theme {
-    background: var(--calm-palette-bg);
-}
-
-body.bright-theme {
-    background: var(--bright-palette-bg);
-}
-
-body.serene-theme {
-    background: var(--serene-palette-bg);
-}
-
-body.sunset-theme {
-    background: var(--sunset-palette-bg);
-}
-
-/* ================================
-   Theme Toggle Button
-================================ */
-.theme-toggle {
-    display: flex;
-    justify-content: flex-end;
-    margin-bottom: 16px;
-}
-
-#themeToggle {
-    padding: 10px 18px;
-    border-radius: 20px;
-    border: none;
-    background: var(--light-highlight);
-    color: white;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background 0.3s ease;
-}
-
-body.dark-mode #themeToggle {
-    background: var(--dark-highlight);
-}
-
-/* Palette Buttons */
-.palette-selection {
-    display: flex;
-    justify-content: space-evenly;
-    margin-top: 16px;
-    margin-bottom: 16px;
-}
-
-.palette-btn {
-    padding: 10px 18px;
-    border-radius: 10px;
-    border: none;
-    background-color: var(--light-highlight);
-    color: white;
-    cursor: pointer;
-    transition: background 0.3s ease;
-}
-
-body.dark-mode .palette-btn {
-    background-color: var(--dark-highlight);
-}
-
-/* ================================
-   Layout
-================================ */
-.app-container {
-    max-width: 560px;
+    max-width: 960px;
     margin: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-}
-
-/* Header */
-.header-bar {
+  }
+  
+  .card {
+    background: white;
+    border-radius: 16px;
+    padding: 16px;
+    margin: 16px 0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+  }
+  
+  body.dark-mode .card {
+    background: #1e1e1e;
+    box-shadow: 0 2px 5px rgba(255,255,255,0.1);
+  }
+  
+  .header-bar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: rgba(255, 255, 255, 0.5);
-    padding: 14px 20px;
-    border-radius: 16px;
-    box-shadow: 0 2px 12px var(--light-shadow);
-}
-
-body.dark-mode .header-bar {
-    background: rgba(255, 255, 255, 0.07);
-    box-shadow: 0 2px 12px var(--dark-shadow);
-}
-
-/* ================================
-   Cards
-================================ */
-.card {
-    background: var(--light-card-bg);
-    border-radius: 20px;
-    padding: 20px;
-    box-shadow: 0 8px 20px var(--light-shadow);
-    transition: transform 0.2s ease, background 0.3s ease;
-}
-
-body.dark-mode .card {
-    background: var(--dark-card-bg);
-    box-shadow: 0 8px 20px var(--dark-shadow);
-}
-
-.card:hover {
-    transform: translateY(-2px);
-}
-
-/* ================================
-   Emotion Card
-================================ */
-.emotion-card {
-    display: flex;
-    align-items: center;
-    background: var(--light-emotion-bg);
-    border-left: 8px solid #ffa500;
-    border-radius: 16px;
-    padding: 16px;
-}
-
-body.dark-mode .emotion-card {
-    background: var(--dark-emotion-bg);
-}
-
-/* Emotion icon */
-.emotion-icon {
-    font-size: 2.8rem;
-    margin-right: 16px;
-}
-
-/* Moved graph to left */
-.emotion-graph {
-    margin-right: 16px;
-    width: 40%;
-}
-
-.emotion-text {
-    flex-grow: 1;
-}
-
-.emotion-state {
-    font-weight: bold;
-    font-size: 1.2rem;
-}
-
-/* ================================
-   Transcription Box
-================================ */
-.transcription-box {
-    height: 50px;
-    background: rgba(0, 0, 0, 0.05);
-    border-radius: 10px;
-    padding: 12px;
-    color: var(--light-text);
-}
-
-body.dark-mode .transcription-box {
-    background: rgba(255, 255, 255, 0.07);
-    color: var(--dark-text);
-}
-
-/* ================================
-   Action Grid
-================================ */
-.grid-actions {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-    margin-top: 10px;
-}
-
-.action-btn {
-    background-color: var(--light-highlight);
-    color: white;
-    padding: 10px;
+  }
+  
+  .palette-selection {
+    margin: 10px 0;
+  }
+  
+  .palette-btn {
+    margin: 5px;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  
+  .btn {
+    padding: 10px 20px;
     border-radius: 12px;
     border: none;
     cursor: pointer;
-    font-weight: bold;
-    transition: background 0.2s ease;
+    background: #673ab7;
+    color: white;
+  }
+  
+  .grid-actions {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .action-btn {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    background: #3f51b5;
+    color: white;
+    cursor: pointer;
+  }
+  
+  #emotionGraph, #emotionTimelineChart {
+    width: 100%;
+    max-width: 500px;
+    margin: auto;
+    background: white;
+    padding: 10px;
+    border-radius: 16px;
+  }
+  
+  body.dark-mode #emotionGraph,
+  body.dark-mode #emotionTimelineChart {
+    background: #2a2550;
+  }
+  
+  /* Theme-specific palettes */
+  /* Ensure unique colors for each palette */
+body.calm-theme {
+    background: #e3f2fd; /* Light Blue */
+    color: #010849;
+}
+body.dark-mode.calm-theme {
+    background: #e3f2fd; /* Light Blue */
+    color: #b5e3e3;
+}
+body.bright-theme {
+    background: #fcf790; /* Light Yellow */
+    color: #010849;
+}
+body.dark-mode.bright-theme {
+    background: #fcf654; /* Yellow */
+    color: #fff3e0;
+}
+body.serene-theme {
+    background: #8c6bbd; /* Lavender */
+    color: #010849;
+}
+body.dark-mode.serene-theme {
+    background: #5e35b1; /* Dark Lavender */
+    color: #ede7f6;
+}
+body.sunset-theme {
+    background: #fb9c02; /* Orange */
+    color: #010849;
+}
+body.dark-mode.sunset-theme {
+    background: #c62828; /* Dark Red */
+    color: #ffebee;
+}
+body.mystic-theme {
+    background: #4e5de0; /* Light Midnight */
+    color: #010849;
+}
+body.dark-mode.mystic-theme {
+    background: #010849; /* Dark Midnight */
+    color: #4e5de0;
+}
+body.nature-theme {
+    background: #388e3c; /* Light Green */
+    color: #010849;
+}
+body.dark-mode.nature-theme {
+    background: #1a481c; /* Dark Green */
+    color: #e8f5e9;
+}
+body.ocean-theme {
+    background: #00796b; /* Aqua */
+    color: #010849;
+}
+body.dark-mode.ocean-theme {
+    background: #186a61; /* Dark Aqua */
+    color: #e0f7fa;
+}
+body.earthy-theme {
+    background: #7cb342; /* Pale Green */
+    color: #010849;
+}
+body.dark-mode.earthy-theme {
+    background: #374e20; /* Dark Green */
+    color: #f1f8e9;
+}
+body.starry-theme {
+    background: #cabad5; /* Sliver */
+    color: #010849;
+}
+body.dark-mode.starry-theme {
+    background: #58515d; /* Dark Sliver */
+    color: #fce4ec;
+}
+body.moonlit-theme {
+    background: #ce73d8; /* Soft Purple */
+    color: #010849;
+}
+body.dark-mode.moonlit-theme {
+    background: #6a1b9a; /* Dark Purple */
+    color: #f3e5f5;
+}
+body.rainbow-theme {
+    background: #ff00d9; /* Pink */
+    color: #010849;
+}
+body.dark-mode.rainbow-theme {
+    background: #e30492; /* Dark Pink */
+    color: #fffde7;
+}
+body.winter-theme {
+    background: #cfebf9; /* Icy Blue */
+    color: #010849;
+}
+body.dark-mode.winter-theme {
+    background: #1a1c63; /* Dark Blue */
+    color: #e1f5fe;
+}
+body.summer-theme {
+    background: #ffde04; /* Warm Yellow */
+    color: #010849;
+}
+body.dark-mode.summer-theme {
+    background: #fbc02d; /* Dark Yellow */
+    color: #fffde7;
+}
+body.autumn-theme {
+    background: #d9dd03; /* Golden Yellow */
+    color: #010849;
+}
+body.dark-mode.autumn-theme {
+    background: #f57f17; /* Dark Orange */
+    color: #ffecb3;
+}
+body.spring-theme {
+    background: #4ac3a3; /* Fresh Green */
+    color: #010849;
+}
+body.dark-mode.spring-theme {
+    background: #126b53; /* Dark Green */
+    color: #f1f8e9;
+}
+body.fall-theme {
+    background: #e65100; /* Soft Orange */
+    color: #010849;
+}
+body.dark-mode.fall-theme {
+    background: #e65100b6; /* Dark Orange */
+    color: #ffe0b2;
+}
+body.snowy-theme {
+    background: #01d1e4; /* Frosty Blue */
+    color: #010849;
+}
+body.dark-mode.snowy-theme {
+    background: #01d1e4dd; /* Dark Blue */
+    color: #e0f7fa;
+}
+body.rainy-theme {
+    background: #37474f; /* Cloudy Gray */
+    color: #010849;
+}
+body.dark-mode.rainy-theme {
+    background: #37474f; /* Dark Gray */
+    color: #cfd8dc;
+}
+body.cloudy-theme {
+    background: #748187; /* Light Gray */
+    color: #010849;
+}
+body.dark-mode.cloudy-theme {
+    background: #455a64; /* Dark Gray */
+    color: #eceff1;
 }
 
-body.dark-mode .action-btn {
-    background-color: var(--dark-highlight);
+/* Light mode text color */
+.project-name, .welcome-msg {
+    color: black; /* Black text in light mode */
 }
 
-.action-btn:hover {
-    filter: brightness(1.1);
+/* Dark mode text color */
+body.dark-mode .project-name, 
+body.dark-mode .welcome-msg {
+    color: white; /* White text in dark mode */
 }
+  
