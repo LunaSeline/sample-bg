@@ -6,7 +6,7 @@ const ctx = document.getElementById("emotionGraph").getContext("2d");
 
 // Emotion data for pie chart
 const emotionData = {
-  labels: ['Happy', 'Sad', 'Anger', 'Fear'],
+  labels: ['Calming music', 'Play game', 'Meditation', 'Alert Caretaker'],
   datasets: [{
     data: [0.3, 0.2, 0.15, 0.15],
     backgroundColor: []
@@ -290,8 +290,40 @@ document.getElementById("cloudyPalette").addEventListener("click", () => {
   localStorage.setItem("palette", "cloudy");
 });
 
-// Load saved palette on page load
-window.onload = () => {
+function openModalWithUrl(url) {
+  const modal = document.getElementById("actionModal");
+  const iframe = document.getElementById("actionIframe");
+  modal.style.display = "flex";
+  iframe.src = url;
+
+  // Auto-close after 15 seconds
+  setTimeout(() => {
+    modal.style.display = "none";
+    iframe.src = "";
+  }, 15000);
+}
+
+window.addEventListener('DOMContentLoaded', function() {
+  // Modal close button
+  document.getElementById("closeModal").onclick = function() {
+    document.getElementById("actionModal").style.display = "none";
+    document.getElementById("actionIframe").src = "";
+  };
+
+  // Modal open buttons
+  document.getElementById("musicBtn").addEventListener("click", () => {
+    openModalWithUrl("https://www.youtube.com/embed/qal34e9v_pk");
+  });
+
+  document.getElementById("meditationBtn").addEventListener("click", () => {
+    openModalWithUrl("https://www.youtube.com/embed/LF8CApbJ9qQ");
+  });
+
+document.getElementById("gameBtn").addEventListener("click", () => {
+  openModalWithUrl("https://toytheater.com/tic-tac-toe/");
+});
+
+  // Theme and palette initialization
   const savedTheme = localStorage.getItem("theme") || 'light';
   const savedPalette = localStorage.getItem("palette");
 
@@ -309,7 +341,10 @@ window.onload = () => {
     body.classList.add(`${savedPalette}-theme`);
   }
 
+  // Initialize charts with the saved theme
   initChart(savedTheme);
-  initEmotionTimelineChart();
-  updateEmotionBasedOnPrompt();
-};
+  initEmotionTimelineChart(savedTheme);
+
+  // Remove or comment out if not defined
+  // updateEmotionBasedOnPrompt();
+});
